@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/citizensadvice/capybara_accessible_selectors.git
+  revision: 288aa63d36b7632dabe5b6b7560aec3548f76e63
+  specs:
+    capybara_accessible_selectors (0.4.2)
+      capybara (~> 3)
+
+GIT
   remote: https://github.com/rails/rails.git
   revision: b71a9ccce04ac08e159d4a21de91a8d76f13d8d0
   branch: main
@@ -197,6 +204,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
+  capybara_accessible_selectors!
   image_processing (~> 1.2)
   importmap-rails (>= 0.3.4)
   jbuilder (~> 2.7)
