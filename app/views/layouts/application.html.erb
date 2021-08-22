@@ -14,7 +14,7 @@
   <body>
     <%= yield %>
 
-    <dialog class="fixed m-auto inset-0 w-96" data-controller="dialog" data-action="turbo:frame-load->dialog#showModal">
+    <dialog class="group fixed m-auto inset-0 w-96" data-controller="dialog" data-action="turbo:frame-load->dialog#showModal">
       <turbo-frame id="dialog"></turbo-frame>
     </dialog>
   </body>
