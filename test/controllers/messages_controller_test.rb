@@ -21,6 +21,14 @@ class MessagesControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to message_url(Message.last)
+    assert_response :see_other
+  end
+
+  test "should respond to a Turbo Frame request by redirecting _top" do
+    post messages_url, params: { message: { author: @message.author } }
+
+    assert_response :see_other
+    assert_equal "_top", response.headers["Turbo-Frame"]
   end
 
   test "should show message" do
