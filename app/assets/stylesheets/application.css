@@ -16,3 +16,5 @@
 
 dialog        { display: none; }
 dialog[open]  { display: initial; }
+
+.group[open] .group-open\:hidden { display: none; }
