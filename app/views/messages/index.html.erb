@@ -7,3 +7,4 @@
 </div>
 
 <%= link_to "New message", new_message_path %>
+<%= button_to "New message", new_message_path(turbo_frame: "dialog"), method: :get, aria: { expanded: false }, data: { turbo_frame: "dialog" } %>
