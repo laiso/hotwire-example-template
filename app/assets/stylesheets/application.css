@@ -18,3 +18,8 @@ dialog        { display: none; }
 dialog[open]  { display: initial; }
 
 .group[open] .group-open\:hidden { display: none; }
+
+@media(min-width: 640px) {
+  .sm\:hidden { display: none; }
+  .sm\:block  { display: block; }
+}
