@@ -24,7 +24,7 @@ gem "jbuilder", "~> 2.7"
 # gem "sassc-rails", "~> 2.1"
 
 # Use Tailwind CSS. See: https://github.com/rails/tailwindcss-rails
-# gem "tailwindcss-rails", "~> 0.4.3"
+gem "tailwindcss-rails", "~> 0.4.3"
 
 # Use Active Model has_secure_password
 # gem "bcrypt", "~> 3.1.7"
