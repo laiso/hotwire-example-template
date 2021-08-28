@@ -1,0 +1,5 @@
+<turbo-frame id="<%= params.fetch(:turbo_frame, "author_#{@author}") %>" target="_top">
+  <h1>Messages from <%= @author %></h1>
+
+  <%= render @messages %>
+</turbo-frame>
