@@ -1,4 +1,4 @@
-<fieldset>
+<fieldset <%= "hidden" if fields.object.marked_for_destruction? %> data-fields-target="fieldset">
   <legend><%= fields.object.model_name.singular.titleize %></legend>
 
   <%= yield %>

@@ -59,6 +59,21 @@ class ApplicantsTest < ApplicationSystemTestCase
     assert_text "enemy@example.com"
   end
 
+  test "hides nested attributes for Personal References" do
+    visit new_applicant_path
+
+    click_on "Add another personal reference"
+    within "fieldset:nth-of-type(2)", text: "Personal Reference" do
+      fill_in "Name", with: "Enemy"
+      fill_in "Email address", with: "enemy@example.com"
+      click_on "Destroy"
+    end
+
+    assert_no_field "Name", with: "Enemy"
+    assert_no_field "Email address", with: "enemy@example.com"
+    assert_button "Destroy", count: 1
+  end
+
   test "rejects invalid nested attributes for Personal References when creating" do
     visit new_applicant_path
 
