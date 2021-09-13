@@ -16,12 +16,20 @@
     <%= form.text_field :name %>
   </div>
 
-  <div>
+  <div data-controller="fields" data-fields-placeholder-value="id">
+    <template data-fields-target="template">
+      <%= form.fields :personal_references_attributes, model: PersonalReference.new, index: "{{ id }}" do |personal_reference_fields| %>
+        <%= render partial: "personal_references/fields", layout: "fieldset", object: personal_reference_fields %>
+      <% end %>
+    </template>
+
     <% applicant.personal_references.each_with_index do |personal_reference, index| %>
       <%= form.fields :personal_references_attributes, model: personal_reference, index: index do |personal_reference_fields| %>
         <%= render partial: "personal_references/fields", layout: "fieldset", object: personal_reference_fields %>
       <% end %>
     <% end %>
+
+    <button type="button" data-action="click->fields#insert">Add another personal reference</button>
   </div>
 
   <div class="actions">
