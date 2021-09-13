@@ -4,6 +4,8 @@
     <%= applicant.name %>
   </p>
 
+  <%= render partial: "personal_references/personal_reference", collection: applicant.personal_references %>
+
   <p>
     <%= link_to "Show this applicant", applicant %>
   </p>

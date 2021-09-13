@@ -17,6 +17,14 @@
   </div>
 
   <div>
+    <% applicant.personal_references.each_with_index do |personal_reference, index| %>
+      <%= form.fields :personal_references_attributes, model: personal_reference, index: index do |personal_reference_fields| %>
+        <%= render partial: "personal_references/fields", layout: "fieldset", object: personal_reference_fields %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>

@@ -23,6 +23,21 @@ class ApplicantsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to applicant_url(Applicant.last)
   end
 
+  test "should create applicant with nested personal references attributes" do
+    assert_difference("Applicant.count" => +1, "PersonalReference.count" => +1) do
+      post applicants_url, params: {
+        applicant: {
+          name: @applicant.name,
+          personal_references_attributes: {
+            "0" => personal_references(:one).slice(:name, :email_address),
+          }
+        }
+      }
+    end
+
+    assert_redirected_to applicant_url(Applicant.last)
+  end
+
   test "should show applicant" do
     get applicant_url(@applicant)
     assert_response :success

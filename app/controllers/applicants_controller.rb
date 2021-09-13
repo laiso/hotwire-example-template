@@ -13,6 +13,7 @@ class ApplicantsController < ApplicationController
   # GET /applicants/new
   def new
     @applicant = Applicant.new
+    @applicant.personal_references.new
   end
 
   # GET /applicants/1/edit
@@ -64,6 +65,6 @@ class ApplicantsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def applicant_params
-      params.require(:applicant).permit(:name)
+      params.require(:applicant).permit(:name, personal_references_attributes: [:name, :email_address])
     end
 end
