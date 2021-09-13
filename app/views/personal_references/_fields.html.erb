@@ -6,9 +6,9 @@
 
 <%= fields.hidden_field :id %>
 
-<%= fields.check_box :_destroy, role: "button", data: {
+<%= fields.check_box :_destroy, role: "button", class: "group-first-of-type:hidden", data: {
   action: token_list(
     "input->fields#remove" => fields.object.new_record?,
     "input->fields#hide" => fields.object.persisted?,
   ) } %>
-<%= fields.label :_destroy %>
+<%= fields.label :_destroy, class: "group-first-of-type:hidden"  %>

@@ -47,7 +47,13 @@ class ApplicantsTest < ApplicationSystemTestCase
       fill_in "Name", with: "Friend"
       fill_in "Email address", with: "friend@example.com"
     end
+
+    assert_no_button "Destroy"
+
     click_on "Add another personal reference"
+
+    assert_button "Destroy", count: 1
+
     within "fieldset:nth-of-type(2)", text: "Personal Reference" do
       fill_in "Name", with: "Enemy"
       fill_in "Email address", with: "enemy@example.com"
@@ -71,7 +77,7 @@ class ApplicantsTest < ApplicationSystemTestCase
 
     assert_no_field "Name", with: "Enemy"
     assert_no_field "Email address", with: "enemy@example.com"
-    assert_button "Destroy", count: 1
+    assert_no_button "Destroy"
   end
 
   test "rejects invalid nested attributes for Personal References when creating" do
@@ -94,7 +100,7 @@ class ApplicantsTest < ApplicationSystemTestCase
 
     assert_text "1 error prohibited this applicant from being saved"
     assert_field "Email address", with: "friend@example.com"
-    assert_button "Destroy", count: 1
+    assert_no_button "Destroy"
     assert_no_field "Email address", with: "enemy@example.com"
   end
 
