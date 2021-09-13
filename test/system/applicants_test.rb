@@ -52,4 +52,16 @@ class ApplicantsTest < ApplicationSystemTestCase
     assert_text "Applicant was successfully created"
     assert_text "friend@example.com"
   end
+
+  test "deletes nested attributes for Personal References when updating" do
+    personal_reference = @applicant.personal_references.first
+
+    visit edit_applicant_path(@applicant)
+
+    click_on "Destroy"
+    click_on "Update Applicant"
+
+    assert_text "Applicant was successfully updated"
+    assert_no_text personal_reference.email_address
+  end
 end

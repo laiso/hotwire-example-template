@@ -53,6 +53,23 @@ class ApplicantsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to applicant_url(@applicant)
   end
 
+  test "should update applicant with nested personal references attributes" do
+    assert_no_difference("Applicant.count", "PersonalReference.count") do
+      put applicant_path(@applicant), params: {
+        applicant: {
+          name: @applicant.name,
+          personal_references_attributes: {
+            "0" => personal_references(:one).slice(:name, :email_address, :id).merge(_destroy: true),
+            "1" => personal_references(:two).slice(:name, :email_address),
+          }
+        }
+      }
+    end
+
+    assert_redirected_to applicant_url(@applicant)
+    assert_equal @applicant.personal_references.pluck(:email_address), [ personal_references(:two).email_address ]
+  end
+
   test "should destroy applicant" do
     assert_difference("Applicant.count", -1) do
       delete applicant_url(@applicant)
