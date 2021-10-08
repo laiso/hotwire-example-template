@@ -58,6 +58,14 @@ ActiveRecord::Schema.define(version: 2021_10_11_133613) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "cards", force: :cascade do |t|
+    t.integer "row_order"
+    t.bigint "stage_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["stage_id"], name: "index_cards_on_stage_id"
+  end
+
   create_table "stages", force: :cascade do |t|
     t.text "name", null: false
     t.integer "column_order"
@@ -69,5 +77,6 @@ ActiveRecord::Schema.define(version: 2021_10_11_133613) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cards", "stages"
   add_foreign_key "stages", "boards"
 end
