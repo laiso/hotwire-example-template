@@ -5,3 +5,9 @@
     <%= message.content %>
   </article>
 <% end %>
+
+<% if @page.next %>
+  <%= link_to pagy_url_for(@page, @page.next), rel: "next" do %>
+    Next page
+  <% end %>
+<% end %>
