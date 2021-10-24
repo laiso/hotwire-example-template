@@ -2,7 +2,8 @@
 
 <turbo-frame id="messages">
   <% if @page.prev %>
-    <%= link_to pagy_url_for(@page, @page.prev), rel: "prev" do %>
+    <%= link_to pagy_url_for(@page, @page.prev), rel: "prev",
+          data: { turbo_rendering: "prepend" } do %>
       Previous page
     <% end %>
   <% end %>
@@ -14,7 +15,8 @@
   <% end %>
 
   <% if @page.next %>
-    <%= link_to pagy_url_for(@page, @page.next), rel: "next" do %>
+    <%= link_to pagy_url_for(@page, @page.next), rel: "next",
+          data: { turbo_rendering: "append" } do %>
       Next page
     <% end %>
   <% end %>

@@ -16,9 +16,9 @@ class MessagesTest < ApplicationSystemTestCase
     end
   end
 
-  test "links to the next page-worth of Message records" do
+  test "appends the next page-worth of Message records" do
     using_page_size 10 do |page_size|
-      messages = Message.most_recent_first.offset(page_size).limit(page_size)
+      messages = Message.most_recent_first.limit(page_size * 2)
 
       visit messages_path
       click_on("Next page") { _1["rel"] == "next" }
@@ -32,9 +32,9 @@ class MessagesTest < ApplicationSystemTestCase
     end
   end
 
-  test "links to the previous page-worth of Message records" do
+  test "prepends the previous page-worth of Message records" do
     using_page_size 10 do |page_size|
-      messages = Message.most_recent_first.limit(page_size)
+      messages = Message.most_recent_first.limit(page_size * 2)
 
       visit messages_path(page: 2)
       click_on("Previous page") { _1["rel"] == "prev" }
