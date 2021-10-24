@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
   def index
-    @messages = Message.most_recent_first
+    @page, @messages = pagy Message.most_recent_first
   end
 end
