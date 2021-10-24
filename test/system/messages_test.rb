@@ -32,6 +32,22 @@ class MessagesTest < ApplicationSystemTestCase
     end
   end
 
+  test "links to the previous page-worth of Message records" do
+    using_page_size 10 do |page_size|
+      messages = Message.most_recent_first.limit(page_size)
+
+      visit messages_path(page: 2)
+      click_on("Previous page") { _1["rel"] == "prev" }
+
+      assert_css "article", count: page_size
+      messages.each_with_index do |message, index|
+        within "article:nth-of-type(#{index + 1})" do
+          assert_text message.content.to_plain_text
+        end
+      end
+    end
+  end
+
   def using_page_size(size = Pagy::DEFAULT[:items], &block)
     original_size, Pagy::DEFAULT[:items] = Pagy::DEFAULT[:items], size
 
