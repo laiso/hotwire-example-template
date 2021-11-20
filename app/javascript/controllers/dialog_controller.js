@@ -6,7 +6,20 @@ export default class extends Controller {
     dialogPolyfill.registerDialog(this.element)
   }
 
+  connect() {
+    if (this.element.open) this.showModal()
+  }
+
   showModal() {
-    this.element.showModal()
+    if (this.element.open) return
+    else this.element.showModal()
+  }
+
+  breakOut(event) {
+    event.preventDefault()
+
+    this.element.close()
+    event.target.src = null
+    Turbo.visit(event.detail.fetchResponse)
   }
 }
