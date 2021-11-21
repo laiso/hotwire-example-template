@@ -2,9 +2,9 @@
 
 <h1>Message</h1>
 
+<%= link_to "New message", new_message_path, class: "sm:hidden" %>
+<%= button_to "New message", new_message_path(turbo_frame: "dialog"), method: :get, class: "hidden sm:block", aria: { expanded: false }, data: { turbo_frame: "dialog" } %>
+
 <div id="messages">
   <%= render @messages %>
 </div>
-
-<%= link_to "New message", new_message_path, class: "sm:hidden" %>
-<%= button_to "New message", new_message_path(turbo_frame: "dialog"), method: :get, class: "hidden sm:block", aria: { expanded: false }, data: { turbo_frame: "dialog" } %>
