@@ -7,6 +7,7 @@ class BuildingsTest < ApplicationSystemTestCase
       select "Owned", from: "Type"
       assert_no_field "Management phone number", type: "tel", fieldset: "Leased"
       within_fieldset "Address" do
+        select "United States", from: "Country"
         fill_in "Line 1", with: "1384 Broadway"
         fill_in "Line 2", with: "Floor 20"
         fill_in "City", with: "New York"
@@ -30,6 +31,7 @@ class BuildingsTest < ApplicationSystemTestCase
       end
       fill_in "Management phone number", with: "5555555555", fieldset: "Leased"
       within_fieldset "Address" do
+        select "United States", from: "Country"
         fill_in "Line 1", with: "1384 Broadway"
         fill_in "Line 2", with: "Floor 20"
         fill_in "City", with: "New York"
@@ -54,6 +56,7 @@ class BuildingsTest < ApplicationSystemTestCase
       end
       fill_in "Description", with: "In escrow", fieldset: "Other"
       within_fieldset "Address" do
+        select "United States", from: "Country"
         fill_in "Line 1", with: "1384 Broadway"
         fill_in "Line 2", with: "Floor 20"
         fill_in "City", with: "New York"
@@ -74,6 +77,7 @@ class BuildingsTest < ApplicationSystemTestCase
     within_section "New building" do
       select "Owned", from: "Type"
       within_fieldset "Address" do
+        select "United States", from: "Country"
         fill_in "Line 1", with: "1384 Broadway"
         fill_in "Line 2", with: "Floor 20"
       end
@@ -89,6 +93,7 @@ class BuildingsTest < ApplicationSystemTestCase
     within_section "New building" do
       select "Leased", from: "Type"
       within_fieldset "Address" do
+        select "United States", from: "Country"
         fill_in "Line 1", with: "1384 Broadway"
         fill_in "Line 2", with: "Floor 20"
       end
@@ -104,6 +109,7 @@ class BuildingsTest < ApplicationSystemTestCase
     within_section "New building" do
       select "Other", from: "Type"
       within_fieldset "Address" do
+        select "United States", from: "Country"
         fill_in "Line 1", with: "1384 Broadway"
         fill_in "Line 2", with: "Floor 20"
       end

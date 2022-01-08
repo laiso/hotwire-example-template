@@ -26,6 +26,10 @@ class Building < ApplicationRecord
     states[state]
   end
 
+  def countries
+    CS.countries.with_indifferent_access
+  end
+
   def country_name
     CS.countries.with_indifferent_access[country]
   end

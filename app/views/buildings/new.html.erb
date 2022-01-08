@@ -35,6 +35,13 @@
     <% end %>
 
     <%= field_set_tag "Address", class: "flex flex-col gap-2" do %>
+      <div class="contents" data-controller="element">
+        <%= form.label :country %>
+        <%= form.select :country, @building.countries.invert, {}, data: { action: "change->element#click" } %>
+        <input type="submit" formmethod="get" formaction="<%= new_building_path %>" hidden
+               data-element-target="click">
+      </div>
+
       <%= form.label :line_1 %>
       <%= form.text_field :line_1 %>
 
@@ -44,8 +51,10 @@
       <%= form.label :city %>
       <%= form.text_field :city %>
 
-      <%= form.label :state %>
-      <%= form.select :state, @building.states.invert %>
+      <% if @building.states.any? %>
+        <%= form.label :state %>
+        <%= form.select :state, @building.states.invert %>
+      <% end %>
 
       <%= form.label :postal_code %>
       <%= form.text_field :postal_code %>
