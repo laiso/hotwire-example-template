@@ -4,7 +4,7 @@ class BuildingsTest < ApplicationSystemTestCase
   test "saves a valid Owned Building" do
     visit new_building_path
     within_section "New building" do
-      choose "Owned", fieldset: "Describe the building"
+      select "Owned", from: "Type"
       assert_no_field "Management phone number", type: "tel", fieldset: "Leased"
       within_fieldset "Address" do
         fill_in "Line 1", with: "1384 Broadway"
@@ -26,7 +26,7 @@ class BuildingsTest < ApplicationSystemTestCase
     visit new_building_path
     within_section "New building" do
       assert_changes -> { page.has_field? "Management phone number", type: "tel", fieldset: "Leased" } do
-        choose "Leased", fieldset: "Describe the building"
+        select "Leased", from: "Type"
       end
       fill_in "Management phone number", with: "5555555555", fieldset: "Leased"
       within_fieldset "Address" do
@@ -50,7 +50,7 @@ class BuildingsTest < ApplicationSystemTestCase
     visit new_building_path
     within_section "New building" do
       assert_changes -> { page.has_field? "Description", fieldset: "Other" } do
-        choose "Other", fieldset: "Describe the building"
+        select "Other", from: "Type"
       end
       fill_in "Description", with: "In escrow", fieldset: "Other"
       within_fieldset "Address" do
@@ -72,7 +72,7 @@ class BuildingsTest < ApplicationSystemTestCase
   test "rejects an invalid Owned Building" do
     visit new_building_path
     within_section "New building" do
-      choose "Owned", fieldset: "Describe the building"
+      select "Owned", from: "Type"
       within_fieldset "Address" do
         fill_in "Line 1", with: "1384 Broadway"
         fill_in "Line 2", with: "Floor 20"
@@ -87,7 +87,7 @@ class BuildingsTest < ApplicationSystemTestCase
   test "rejects an invalid Rented Building" do
     visit new_building_path
     within_section "New building" do
-      choose "Leased", fieldset: "Describe the building"
+      select "Leased", from: "Type"
       within_fieldset "Address" do
         fill_in "Line 1", with: "1384 Broadway"
         fill_in "Line 2", with: "Floor 20"
@@ -102,7 +102,7 @@ class BuildingsTest < ApplicationSystemTestCase
   test "rejects an invalid Other Building" do
     visit new_building_path
     within_section "New building" do
-      choose "Other", fieldset: "Describe the building"
+      select "Other", from: "Type"
       within_fieldset "Address" do
         fill_in "Line 1", with: "1384 Broadway"
         fill_in "Line 2", with: "Floor 20"

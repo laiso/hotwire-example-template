@@ -22,3 +22,7 @@ Introduce `fields` controller, route `input` events to `fields#expand`, render
 * Add third "other" value for `building_type`
 * Add the `buildings.building_type_description` column and mark it required for
   "other" records
+
+## Select + Rendered + Disabled + Hidden
+
+* Replace `<input type"radio">` elements with a `<select>`
