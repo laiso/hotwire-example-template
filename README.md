@@ -45,3 +45,17 @@ When it suits your use-case, treat a change to a `<select>` as a `GET
 /buildings/new` submission, encoding all current values into the URL, forwarding
 those query parameter encoded values to the `Building` instance, then
 re-rendering the page
+
+## Select + Fetched data + Turbo Frame
+
+* Preserve state (like focus and scroll depth) by scoping the submission to a
+  `<turbo-frame>` element that wraps the State `<select>`
+
+There are several ways to navigate the frame, including retrieving the
+`<turbo-frame>` instance and updating the `[src]` attribute from JavaScript.
+
+In this example's case, we'll programmatically click a visually hidden `<input
+type="submit">` element to navigate the `<select>` element's ancestor `<form>`.
+We get to render all the concrete details like the path and the frame ID, while
+still relying on the browser's built-in form field encoding mechanisms to
+transform the currently selected `<option>` value to a query parameter.

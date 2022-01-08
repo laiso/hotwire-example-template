@@ -120,6 +120,18 @@ class BuildingsTest < ApplicationSystemTestCase
     assert_selector :alert, "Description can't be blank"
   end
 
+  test "selecting a Country retains page state" do
+    visit new_building_path
+
+    within_fieldset "Address" do
+      select("United States", from: "Country").then { assert_select "State" }
+      select("Vatican City", from: "Country").then  { assert_no_select "State"
+                                                      assert_select "Country", focused: true }
+      select("Canada", from: "Country").then        { assert_select "State"
+                                                      assert_select "Country", focused: true }
+    end
+  end
+
   def within_section(*arguments, **options, &block)
     within(:section, *arguments, **options, &block)
   end
