@@ -5,6 +5,7 @@ class BuildingsTest < ApplicationSystemTestCase
     visit new_building_path
     within_section "New building" do
       choose "Owned", fieldset: "Describe the building"
+      assert_no_field "Management phone number", type: "tel", fieldset: "Leased"
       within_fieldset "Address" do
         fill_in "Line 1", with: "1384 Broadway"
         fill_in "Line 2", with: "Floor 20"
@@ -24,7 +25,9 @@ class BuildingsTest < ApplicationSystemTestCase
   test "saves a valid Rented Building" do
     visit new_building_path
     within_section "New building" do
-      choose "Leased", fieldset: "Describe the building"
+      assert_changes -> { page.has_field? "Management phone number", type: "tel", fieldset: "Leased" } do
+        choose "Leased", fieldset: "Describe the building"
+      end
       fill_in "Management phone number", with: "5555555555", fieldset: "Leased"
       within_fieldset "Address" do
         fill_in "Line 1", with: "1384 Broadway"

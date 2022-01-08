@@ -11,3 +11,8 @@ We'll cover:
 Collect a Building's address, along with whether or not it's owned or leased.
 When it's leased, the form also requires that the management phone number is
 provided.
+
+## Radio buttons + Rendered + Disabled + Hidden
+
+Introduce `fields` controller, route `input` events to `fields#expand`, render
+`<fieldset disabled>` and use `disabled:hidden`

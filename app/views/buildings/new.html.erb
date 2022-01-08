@@ -1,7 +1,7 @@
 <section class="border rounded-md w-full max-w-lg">
   <h1>New building</h1>
 
-  <%= form_with model: @building do |form| %>
+  <%= form_with model: @building, data: { controller: "fields" } do |form| %>
     <% if @building.errors.any? %>
       <output class="text-red-500">
         <h2><%= pluralize(@building.errors.count, "error") %> prohibited this Building from being saved:</h2>
@@ -17,13 +17,15 @@
     <%= field_set_tag "Describe the building" do %>
       <%= form.collection_radio_buttons :building_type, Building.building_types.keys, :to_s, :humanize do |builder| %>
         <span>
-          <%= builder.radio_button %>
+          <%= builder.radio_button autocomplete: "off",
+                                   aria: { controls: form.field_id(:building_type, builder.value, :fieldset) },
+                                   data: { action: "input->fields#expand" } %>
           <%= builder.label %>
         </span>
       <% end %>
     <% end %>
 
-    <%= field_set_tag "Leased" do %>
+    <%= field_set_tag "Leased", id: form.field_id(:building_type, :leased, :fieldset), name: form.field_name(:building_type), class: "disabled:hidden", disabled: !@building.leased? do %>
       <%= form.label :management_phone_number %>
       <%= form.telephone_field :management_phone_number %>
     <% end %>
