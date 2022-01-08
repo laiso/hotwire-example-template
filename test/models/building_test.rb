@@ -73,6 +73,15 @@ class BuildingTest < ActiveSupport::TestCase
     assert_not_includes building.errors, :management_phone_number
   end
 
+  test "does not validate the presence of building_type_description when Owned" do
+    building = Building.new building_type: "owned"
+
+    valid = building.validate
+
+    assert_not valid
+    assert_not_includes building.errors, :building_type_description
+  end
+
   test "validates the presence of management_phone_number when Leased" do
     building = Building.new building_type: "leased"
 
@@ -80,6 +89,33 @@ class BuildingTest < ActiveSupport::TestCase
 
     assert_not valid
     assert_includes building.errors, :management_phone_number
+  end
+
+  test "does not validate the presence of building_type_description when Leased" do
+    building = Building.new building_type: "leased"
+
+    valid = building.validate
+
+    assert_not valid
+    assert_not_includes building.errors, :building_type_description
+  end
+
+  test "validates the presence of management_phone_number when Other" do
+    building = Building.new building_type: "other"
+
+    valid = building.validate
+
+    assert_not valid
+    assert_includes building.errors, :building_type_description
+  end
+
+  test "does not validate the presence of management_phone_number when Other" do
+    building = Building.new building_type: "other"
+
+    valid = building.validate
+
+    assert_not valid
+    assert_not_includes building.errors, :management_phone_number
   end
 
   test "#state_name maps the state code to a name" do

@@ -23,6 +23,7 @@ class BuildingsController < ApplicationController
     params.require(:building).permit(
       :building_type,
       :management_phone_number,
+      :building_type_description,
       :line_1,
       :line_2,
       :city,

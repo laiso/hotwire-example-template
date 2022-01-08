@@ -30,6 +30,11 @@
       <%= form.telephone_field :management_phone_number %>
     <% end %>
 
+    <%= field_set_tag "Other", id: form.field_id(:building_type, :other, :fieldset), name: form.field_name(:building_type), class: "disabled:hidden", disabled: !@building.other? do %>
+      <%= form.label :building_type_description %>
+      <%= form.text_field :building_type_description %>
+    <% end %>
+
     <%= field_set_tag "Address", class: "flex flex-col gap-2" do %>
       <%= form.label :line_1 %>
       <%= form.text_field :line_1 %>

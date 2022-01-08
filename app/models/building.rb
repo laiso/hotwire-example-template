@@ -1,5 +1,5 @@
 class Building < ApplicationRecord
-  enum :building_type, owned: 0, leased: 1
+  enum :building_type, owned: 0, leased: 1, other: 2
 
   with_options presence: true do
     validates :line_1
@@ -12,6 +12,10 @@ class Building < ApplicationRecord
 
   with_options presence: { if: :leased? } do
     validates :management_phone_number
+  end
+
+  with_options presence: { if: :other? } do
+    validates :building_type_description
   end
 
   def states

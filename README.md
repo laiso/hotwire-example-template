@@ -16,3 +16,9 @@ provided.
 
 Introduce `fields` controller, route `input` events to `fields#expand`, render
 `<fieldset disabled>` and use `disabled:hidden`
+
+## "Other" Radio button option + Rendered + Disabled + Hidden
+
+* Add third "other" value for `building_type`
+* Add the `buildings.building_type_description` column and mark it required for
+  "other" records
