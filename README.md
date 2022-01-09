@@ -104,7 +104,27 @@ Most of the fanfare for Turbo Streams is in relation to Web Socket broadcasts or
 Form Submissions, the `<turbo-stream>` element is an HTML like any other [Custom
 Element][], and can be rendered directly into the `<html>` element.
 
+The [`turbo_stream.replace`][replace] call accepts the same options as the
+[`render`][render] call, and supports the same
+[`to_partial_path`][to_partial_path]-reliant short-hand notation:
+
+```diff
+--- a/app/views/buildings/new.html.erb
++++ b/app/views/buildings/new.html.erb
+-      <%= turbo_stream.replace dom_id(@building), partial: "buildings/building", object: @building %>
++      <%= turbo_stream.replace @building %>
+       </turbo-frame>
+
+       <%= form.label :postal_code %>
+       <%= form.text_field :postal_code %>
+
+-      <%= render partial: "buildings/building", object: @building %>
++      <%= render @building %>
+```
 
 [XMLHttpRequest]: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
 [fetch]: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
 [Custom Element]: https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements
+[replace]: https://github.com/hotwired/turbo-rails/blob/v1.0.0/app/models/turbo/streams/tag_builder.rb#L53-L61
+[render]: https://edgeapi.rubyonrails.org/classes/ActionView/Helpers/RenderingHelper.html#method-i-render
+[to_partial_path]: https://guides.rubyonrails.org/layouts_and_rendering.html#passing-local-variables
