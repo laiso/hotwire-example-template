@@ -33,4 +33,8 @@ class Building < ApplicationRecord
   def country_name
     CS.countries.with_indifferent_access[country]
   end
+
+  def estimated_arrival_on
+    countries.keys.index(country).days.from_now
+  end
 end
